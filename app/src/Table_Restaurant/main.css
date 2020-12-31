@@ -1,0 +1,47 @@
+.border-table, .border-table td, .border-table th{
+    border: solid 1px;
+    cursor: pointer;
+}
+
+.border-table tr:hover{
+    background-color: grey;
+}
+
+.border-table{
+    border-collapse: collapse;
+}
+
+.table-restaurant{
+    width: 100%;
+}
+
+.container-rs{
+    padding-top: 25px;
+    margin: auto;
+    width: 80%;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.table-restaurant{
+    margin-top: 10px;
+}
+
+.search-input{
+    min-width: 200px;
+}
+
+.pagination-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.pagination-item{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-right: 2px;
+}

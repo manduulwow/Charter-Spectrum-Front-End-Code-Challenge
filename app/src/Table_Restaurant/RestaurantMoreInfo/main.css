@@ -1,0 +1,46 @@
+.res-more-container{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    display: grid;
+    align-items: center;
+}
+
+.res-more-curtain{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.25;
+    position: absolute;
+}
+
+.res-more-box{
+    width: 500px;
+    min-height: 400px;
+    margin: auto;
+    background-color: white;
+    z-index: 2;
+    border-radius: 10px;
+    display: grid;
+    align-items: center;
+}
+
+.res-more-box table{
+    margin: auto;
+    max-width: 80%;
+    border-collapse: collapse;
+    margin-top: 2em;
+    overflow: hidden;
+}
+
+.res-more-box td{
+    border-top: solid 1px;
+    padding: 1em;
+}
+
+.res-more-box td::first-letter{
+    text-transform: uppercase;
+}
