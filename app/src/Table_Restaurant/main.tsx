@@ -41,25 +41,23 @@ const TableRestaurant = ({ restaurants, setRestaurants, reset }: TableRestaurant
         website: '',
         city: ''
     });
-    const [pages, setPages] = useState(Math.floor(restaurants.length/10) + ((restaurants.length%10 > 1) ? 1 : 0));
-    let restaurantsInfo = [];
+    const [pages, setPages] = useState(Math.floor(restaurants.length / 10) + ((restaurants.length % 10 > 1) ? 1 : 0));
+    let restaurantsInfo: Restaurants[] = restaurants;
 
     const states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
     let genres: string[] = [];
-
-    restaurants.forEach(restaurant => {
+    restaurantsInfo.forEach(restaurant => {
         const restaurant_genre = restaurant.genre.split(',');
         genres = [...genres, ...restaurant_genre];
     });
-
     genres = Array.from(new Set(genres.sort((a, b) => {
         if (a < b) return -1;
         if (a > b) return 1;
         return 0;
     })));
 
-    const StateSelect = <Select values={states} func={setStateFilter} resetPage={setCurrentPage}/>
-    const GenreSelect = <Select values={genres} func={setGenreFilter} resetPage={setCurrentPage}/>
+    const StateSelect = <Select values={states} func={setStateFilter} resetPage={setCurrentPage} />
+    const GenreSelect = <Select values={genres} func={setGenreFilter} resetPage={setCurrentPage} />
     const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.currentTarget.value);
         if (e.currentTarget.value === '') {
@@ -78,7 +76,7 @@ const TableRestaurant = ({ restaurants, setRestaurants, reset }: TableRestaurant
         if (e.key === 'Enter')
             onSearch();
     }
-    const onRestaurantClick = (restaurant: {name:string, city:string, hours:string, telephone:string, website:string, address1:string, attire:string}) => {
+    const onRestaurantClick = (restaurant: { name: string, city: string, hours: string, telephone: string, website: string, address1: string, attire: string }) => {
         setRestaurantInfo(restaurant);
         setShowInfo(true);
     }
@@ -89,10 +87,10 @@ const TableRestaurant = ({ restaurants, setRestaurants, reset }: TableRestaurant
         if (genreFilter === 'All') return 1;
         return (restaurant.genre.split(',').find(genre => genre === genreFilter)) ? 1 : 0;
     })
-            
+
     useEffect(() => {
-        setPages(Math.floor(restaurantsInfo.length/10) + ((restaurantsInfo.length%10 > 1) ? 1 : 0));
-    },[pages,restaurantsInfo.length]);
+        setPages(Math.floor(restaurantsInfo.length / 10) + ((restaurantsInfo.length % 10 > 1) ? 1 : 0));
+    }, [pages, restaurantsInfo.length]);
 
     return <div className="container-rs">
         <span>State </span>{StateSelect}
@@ -135,7 +133,7 @@ const TableRestaurant = ({ restaurants, setRestaurants, reset }: TableRestaurant
                 :
                 <div>
                     {
-                        (stateFilter === 'All') ? <p>We currently don't have any restaurant information</p> : <p>We don't have any restaurant information in {stateFilter}</p>
+                        (stateFilter === 'All') ? <p>We currently don't have any restaurant information in this Genre or Search</p> : <p>We don't have any restaurant information in {stateFilter} {(genreFilter === 'All') ? '' : `or Genre - ${genreFilter}`}</p>
                     }
                 </div>
         }
